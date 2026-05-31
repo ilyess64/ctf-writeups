@@ -1,4 +1,7 @@
 # OverTheWire Bandit CTF Writeups
+=======
+                # OVERTHEWIRE BANDIT CTF WRITEUPS
+>>>>>>> e252ef6 (add overthewire bandit writeups for levels 9-14)
 
 [ MISSION LOG: LEVEL 0 ]
 ----------------------------------------------------------------------
@@ -112,3 +115,90 @@
 
 > COMMANDS:
   sort data.txt | uniq -c
+
+[ MISSION LOG: LEVEL 9 ]
+----------------------------------------------------------------------
+* Objective     : Find the password inside a file filled with data garbage.
+* Concept       : Binary Text Extraction
+* Strategy      : The file was mostly unreadable machine code, but it had a 
+                  few human-readable lines preceded by equal signs. Used the 
+                  strings tool to filter out the noise and grab the password.
+
+> COMMANDS:
+  strings data.txt | grep "=="
+
+
+[ MISSION LOG: LEVEL 10 ]
+----------------------------------------------------------------------
+* Objective     : Decode a file containing a Base64 encoded password.
+* Concept       : Data Encoding Formats
+* Strategy      : Recognized the data format as Base64 text. Used the built-in 
+                  decode flag (-d) with the base64 command to instantly 
+                  translate it back into plain text.
+
+> COMMANDS:
+  base64 -d data.txt
+
+
+[ MISSION LOG: LEVEL 11 ]
+----------------------------------------------------------------------
+* Objective     : Decrypt a password file where all letters are shifted.
+* Concept       : Substitution Ciphers (ROT13)
+* Strategy      : The text was scrambled using a classic ROT13 cipher (where 
+                  each letter is moved 13 spots forward). Used an online 
+                  cipher decoder site to quickly reverse the shift.
+
+> COMMANDS:
+  cat data.txt (then pasted into online ROT13 decoder)
+
+
+[ MISSION LOG: LEVEL 12 ]
+----------------------------------------------------------------------
+* Objective     : Recover a text file buried inside multiple layers of compression.
+* Concept       : File Signatures & Nested Decompression
+* Strategy      : Moved to a temporary folder in /tmp to have write access. Reversed 
+                  the hex dump text back into a binary file using xxd. Then, used 
+                  the file tool repeatedly to discover each layer's type, renaming 
+                  and unpacking them step-by-step (Gzip -> Bzip2 -> Gzip -> Tar 
+                  -> Tar -> Bzip2 -> Tar -> Gzip) until reaching plaintext ASCII.
+
+> COMMANDS:
+  mkdir /tmp/something && cp data.txt /tmp/something && cd /tmp/something
+  xxd -r data.txt > name
+  file name
+  mv name name.gz && gzip -d name.gz
+  file name (bzip2) -> bunzip2 name
+  (Repeated file, mv, and extraction tools: gzip -d, bunzip2, tar -xf)
+  cat name
+
+
+[ MISSION LOG: LEVEL 13 ]
+----------------------------------------------------------------------
+* Objective     : Log into the next level using a private SSH security key.
+* Concept       : Private Key Authentication & Server Blocks
+* Strategy      : The game server explicitly blocks internal connections to 
+                  localhost to save resources. Copied the text inside 
+                  sshkey.private, exited back to the local WSL2 terminal, 
+                  and saved it as bandit14.key. Fixed the open file permissions 
+                  using chmod 600, and logged directly into level 14 from the 
+                  local machine.
+
+> COMMANDS:
+  cat sshkey.private (copy text)
+  exit
+  nano bandit14.key (paste text)
+  chmod 600 bandit14.key
+  ssh -i bandit14.key bandit14@bandit.labs.overthewire.org -p 2220
+
+
+[ MISSION LOG: LEVEL 14 ]
+----------------------------------------------------------------------
+* Objective     : Submit the current level password to a specific port to get 
+                  the next flag.
+* Concept       : Network Ports & Raw Data Transfer
+* Strategy      : Printed the retrieved password file for Level 14 and used 
+                  the netcat (nc) tool to send it directly to port 30000 on the 
+                  local network loopback interface.
+
+> COMMANDS:
+  cat /etc/bandit_pass/bandit14 | nc localhost 30000
