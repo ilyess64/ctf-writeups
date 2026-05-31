@@ -13,25 +13,25 @@
 
 | Level | Concept | Status |
 |-------|---------|--------|
-| [Level 0](#-level-0) | Remote Login & Navigation | Done |
-| [Level 1](#-level-1) | Input Streams vs File Paths | Done |
-| [Level 2](#-level-2) | Filenames with Spaces | Done |
-| [Level 3](#-level-3) | Hidden Files | Done |
-| [Level 4](#-level-4) | Wildcard Matching | Done |
-| [Level 5](#-level-5) | File Searching & Size Filtering | Done |
-| [Level 6](#-level-6) | System-Wide Search & Error Hiding | Done |
-| [Level 7](#-level-7) | Keyword Matching with grep | Done |
-| [Level 8](#-level-8) | Sorting & Duplicate Detection | Done |
-| [Level 9](#-level-9) | Binary Text Extraction | Done |
-| [Level 10](#-level-10) | Base64 Encoding | Done |
-| [Level 11](#-level-11) | ROT13 Substitution Cipher | Done |
-| [Level 12](#-level-12) | Nested Compression Layers | Done |
-| [Level 13](#-level-13) | SSH Private Key Authentication | Done |
-| [Level 14](#-level-14) | Network Ports & Netcat | Done |
+| [Level 0](#-level-0) | Remote Login & Navigation | ✅ |
+| [Level 1](#-level-1) | Input Streams vs File Paths | ✅ |
+| [Level 2](#-level-2) | Filenames with Spaces | ✅ |
+| [Level 3](#-level-3) | Hidden Files | ✅ |
+| [Level 4](#-level-4) | Wildcard Matching | ✅ |
+| [Level 5](#-level-5) | File Searching & Size Filtering | ✅ |
+| [Level 6](#-level-6) | System-Wide Search & Error Hiding | ✅ |
+| [Level 7](#-level-7) | Keyword Matching with grep | ✅ |
+| [Level 8](#-level-8) | Sorting & Duplicate Detection | ✅ |
+| [Level 9](#-level-9) | Binary Text Extraction | ✅ |
+| [Level 10](#-level-10) | Base64 Encoding | ✅ |
+| [Level 11](#-level-11) | ROT13 Substitution Cipher | ✅ |
+| [Level 12](#-level-12) | Nested Compression Layers | ✅ |
+| [Level 13](#-level-13) | SSH Private Key Authentication | ✅ |
+| [Level 14](#-level-14) | Network Ports & Netcat | ✅ |
 
 ---
 
-## Level 0
+## 🎯 Level 0
 
 **Concept:** Remote Login & Basic Navigation
 
@@ -48,7 +48,7 @@ cat readme
 
 ---
 
-## Level 1
+## 🎯 Level 1
 
 **Concept:** Input Streams vs File Paths
 
@@ -65,7 +65,7 @@ cat ./-
 
 ---
 
-## Level 2
+## 🎯 Level 2
 
 **Concept:** Filenames with Spaces
 
@@ -82,7 +82,7 @@ cat "./spaces in this filename"
 
 ---
 
-## Level 3
+## 🎯 Level 3
 
 **Concept:** Hidden Files & Detailed Listing
 
@@ -101,7 +101,7 @@ cat ./.hidden
 
 ---
 
-## Level 4
+## 🎯 Level 4
 
 **Concept:** Wildcard Matching & Content Scanning
 
@@ -119,7 +119,7 @@ cat ./file0*
 
 ---
 
-## Level 5
+## 🎯 Level 5
 
 **Concept:** File Searching & Size Filtering
 
@@ -138,7 +138,7 @@ cat ./maybehere07/.file2
 
 ---
 
-## Level 6
+## 🎯 Level 6
 
 **Concept:** System-Wide Search & Error Suppression
 
@@ -155,7 +155,7 @@ find / -type f -size 33c -group bandit6 -user bandit7 2>/dev/null
 
 ---
 
-## Level 7
+## 🎯 Level 7
 
 **Concept:** Text Searching with grep
 
@@ -172,7 +172,7 @@ grep "millionth" data.txt
 
 ---
 
-## Level 8
+## 🎯 Level 8
 
 **Concept:** Sorting & Duplicate Detection
 
@@ -189,7 +189,7 @@ sort data.txt | uniq -c
 
 ---
 
-## Level 9
+## 🎯 Level 9
 
 **Concept:** Binary Text Extraction
 
@@ -206,7 +206,7 @@ strings data.txt | grep "=="
 
 ---
 
-## Level 10
+## 🎯 Level 10
 
 **Concept:** Base64 Encoding & Decoding
 
@@ -223,7 +223,7 @@ base64 -d data.txt
 
 ---
 
-## Level 11
+## 🎯 Level 11
 
 **Concept:** ROT13 Substitution Cipher
 
@@ -244,7 +244,7 @@ cat data.txt
 
 ---
 
-## Level 12
+## 🎯 Level 12
 
 **Concept:** Nested Compression & File Signatures
 
@@ -269,7 +269,7 @@ gzip -d name.gz            # decompress (or bunzip2 / tar -xf)
 
 ---
 
-## Level 13
+## 🎯 Level 13
 
 **Concept:** SSH Private Key Authentication
 
@@ -292,7 +292,7 @@ ssh -i bandit14.key bandit14@bandit.labs.overthewire.org -p 2220
 
 ---
 
-## Level 14
+## 🎯 Level 14
 
 **Concept:** Network Ports & Raw Data Transfer with Netcat
 
@@ -309,3 +309,4 @@ cat /etc/bandit_pass/bandit14 | nc localhost 30000
 
 ---
 
+*Writeups by Ilyess · Learning cybersecurity · [CTF Write-ups repo](../)*
